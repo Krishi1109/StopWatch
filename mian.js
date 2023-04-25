@@ -37,21 +37,25 @@ function timerCycle() {
         hr = parseInt(hr);
 
         mlSec++
-        if (mlSec == 100) {
+
+        if(mlSec == 100){
+            sec = sec + 1;
             mlSec = 0
-            sec++
-            if (sec == 60) {
-                sec = 0
-                min++
-                if (min == 60) {
-                    min = 0
-                    hr++
-                }
-            }
+        }
+        
+
+        if (sec == 60) {
+          min = min + 1;
+          sec = 0;
+        }
+        if (min == 60) {
+          hr = hr + 1;
+          min = 0;
+          sec = 0;
         }
 
         if (mlSec < 10) {
-            sec = "0" + sec;
+            mlSec = "0" + mlSec;
         }
         if (sec < 10) {
             sec = "0" + sec;
@@ -64,7 +68,7 @@ function timerCycle() {
         }
 
 
-        Timer.innerHTML = hr + ":" + min + ":" + sec + ":" + mlSec;
+        Timer.innerHTML = hr + ":" + min + ":" + sec + ":" + mlSec ;
 
         setTimeout("timerCycle()", 10);
     }
